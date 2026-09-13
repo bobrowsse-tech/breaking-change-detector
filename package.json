@@ -1,0 +1,103 @@
+{
+  "name": "breaking-change-detector",
+  "displayName": "Internal Breaking-Change Detector",
+  "description": "Diffs an internal package's public API across versions and maps exactly which in-repo call sites a change will break.",
+  "version": "0.1.0",
+  "publisher": "bobrowsse-tech",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "breaking-change-detectorContainer",
+          "title": "Internal Breaking-Change Detector",
+          "icon": "$(warning)"
+        }
+      ]
+    },
+    "views": {
+      "breaking-change-detectorContainer": [
+        {
+          "id": "breaking-change-detectorView",
+          "name": "Dashboard",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "breakingChange.diffAgainstBase",
+        "title": "Internal Breaking-Change Detector: Diff Against Base"
+      },
+      {
+        "command": "breakingChange.viewImpacted",
+        "title": "Internal Breaking-Change Detector: View Impacted Call Sites"
+      },
+      {
+        "command": "breakingChange.postPrCheck",
+        "title": "Internal Breaking-Change Detector: Post PR Check"
+      }
+    ],
+    "languageModelTools": [
+      {
+        "name": "check_breaking_changes",
+        "tags": [
+          "breaking-change-detector"
+        ],
+        "toolReferenceName": "check_breaking_changes",
+        "displayName": "Internal Breaking-Change Detector — check_breaking_changes",
+        "modelDescription": "Diffs a workspace package's public API against its previous published version and lists which in-repo call sites will break. Use this before merging a change to a shared internal package.",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "packageName": {
+              "type": "string",
+              "description": "The internal package to check, as it appears in the monorepo's package.json name field."
+            }
+          },
+          "required": [
+            "packageName"
+          ]
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "npm run check-types && node esbuild.js",
+    "check-types": "tsc --noEmit",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "vscode:prepublish": "npm run package",
+    "package": "npm run check-types && node esbuild.js --production",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.95.0",
+    "@types/node": "^20.0.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.0",
+    "esbuild": "^0.24.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.6.0"
+  },
+  "dependencies": {
+    "typescript": "latest",
+    "ts-morph": "latest",
+    "@octokit/rest": "latest",
+    "simple-git": "latest"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bobrowsse-tech/breaking-change-detector"
+  }
+}
