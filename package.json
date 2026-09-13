@@ -8,6 +8,7 @@
     "vscode": "^1.95.0"
   },
   "categories": [
+    "Linters",
     "Other"
   ],
   "activationEvents": [],
@@ -108,5 +109,17 @@
   "galleryBanner": {
     "color": "#991B1B",
     "theme": "dark"
+  },
+  "keywords": [
+    "breaking-change",
+    "api",
+    "monorepo",
+    "typescript",
+    "ci",
+    "semver"
+  ],
+  "homepage": "https://github.com/bobrowsse-tech/breaking-change-detector#readme",
+  "bugs": {
+    "url": "https://github.com/bobrowsse-tech/breaking-change-detector/issues"
   }
 }
