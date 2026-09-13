@@ -4,23 +4,37 @@ const production = process.argv.includes('--production');
 const watch = process.argv.includes('--watch');
 
 async function main() {
-  const ctx = await esbuild.context({
-    entryPoints: ['src/extension.ts'],
+  const shared = {
     bundle: true,
     format: 'cjs',
     minify: production,
     sourcemap: !production,
     sourcesContent: false,
     platform: 'node',
+    logLevel: 'silent',
+  };
+
+  const extensionCtx = await esbuild.context({
+    ...shared,
+    entryPoints: ['src/extension.ts'],
     outfile: 'dist/extension.js',
     external: ['vscode'],
-    logLevel: 'silent',
   });
+
+  const cliCtx = await esbuild.context({
+    ...shared,
+    entryPoints: ['src/cli.ts'],
+    outfile: 'dist/cli.js',
+    banner: { js: '#!/usr/bin/env node' },
+  });
+
   if (watch) {
-    await ctx.watch();
+    await Promise.all([extensionCtx.watch(), cliCtx.watch()]);
   } else {
-    await ctx.rebuild();
-    await ctx.dispose();
+    await extensionCtx.rebuild();
+    await cliCtx.rebuild();
+    await extensionCtx.dispose();
+    await cliCtx.dispose();
   }
 }
 

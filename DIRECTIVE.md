@@ -1,7 +1,7 @@
 
 # Build Directive — Internal Breaking-Change Detector
 
-> Rank **#6** in the Unbuilt VS Code Tools roadmap. This directive is written for an AI coding agent (Claude Code, Copilot agent mode, or a human following along) to execute directly. The `breaking-change-detector/` folder next to this file already contains a working scaffold — activation, side-panel dashboard, command registration, and a Language Model Tool stub — generated per the shared conventions in `../AGENTS.md`. Everything marked `TODO` below is the real remaining work.
+> Rank **#6** in the Unbuilt VS Code Tools roadmap. This directive is written for an AI coding agent (Claude Code, Copilot agent mode, or a human following along) to execute directly. This repository already contains a working scaffold — activation, side-panel dashboard, command registration, and a Language Model Tool stub — following the suite conventions (TypeScript strict, esbuild bundle, WebviewView dashboard, shared VS Code–free service module, Language Model Tool). Everything marked `TODO` below is the real remaining work.
 
 ## 1. Objective
 
@@ -43,9 +43,9 @@ Buttons call `vscode.commands.executeCommand`, not the tool logic directly — k
 
 ## 6. Suggested dependencies
 
-`typescript`, `ts-morph`, `@octokit/rest`, `simple-git`
+`typescript`, `ts-morph`, `simple-git`
 
-Install as regular `dependencies` (already stubbed into `package.json` — replace the `"latest"` version pins with the actual resolved versions once installed, per the pinning convention in `AGENTS.md`).
+GitHub PR comments use `fetch` against the REST API (token from SecretStorage). Pin resolved versions in `package.json`. CLI entry: `breaking-change-check`.
 
 ## 7. Edge cases & safety notes
 
