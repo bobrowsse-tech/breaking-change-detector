@@ -3,7 +3,6 @@
  * CLI: npx breaking-change-check <packageName> [--base <ref>]
  * Runs the same analysis as the extension for CI.
  */
-import * as path from 'path';
 import { BreakingChangeService } from './service';
 
 async function main() {

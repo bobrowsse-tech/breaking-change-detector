@@ -12,7 +12,7 @@ export class DashboardProvider implements vscode.WebviewViewProvider {
   private summary = 'No diff run yet.';
   private report?: BreakingReport;
 
-  constructor(private readonly extensionUri: vscode.Uri) {}
+  constructor() {}
 
   resolveWebviewView(webviewView: vscode.WebviewView) {
     this.view = webviewView;

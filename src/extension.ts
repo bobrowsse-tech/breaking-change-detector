@@ -25,7 +25,7 @@ function createService(): BreakingChangeService | undefined {
   return new BreakingChangeService(root);
 }
 
-async function pickPackageName(service: BreakingChangeService): Promise<string | undefined> {
+async function pickPackageName(): Promise<string | undefined> {
   // Prefer asking; user can type scoped names like @acme/core
   return vscode.window.showInputBox({
     title: 'Package to check (package.json name)',
@@ -35,7 +35,7 @@ async function pickPackageName(service: BreakingChangeService): Promise<string |
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const dashboard = new DashboardProvider(context.extensionUri);
+  const dashboard = new DashboardProvider();
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider('breaking-change-detectorView', dashboard)
   );
@@ -53,7 +53,7 @@ export function activate(context: vscode.ExtensionContext) {
       if (!service) {
         return undefined;
       }
-      const packageName = payload?.packageName ?? (await pickPackageName(service));
+      const packageName = payload?.packageName ?? (await pickPackageName());
       if (!packageName) {
         return undefined;
       }
