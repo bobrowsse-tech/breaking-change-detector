@@ -44,3 +44,7 @@ npm run package
 ## License
 
 MIT
+
+## Contributing
+
+Changes to `main` must go through a pull request. See [CONTRIBUTING.md](./CONTRIBUTING.md).
