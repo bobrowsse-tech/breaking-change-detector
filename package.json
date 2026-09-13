@@ -103,5 +103,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/bobrowsse-tech/breaking-change-detector"
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#991B1B",
+    "theme": "dark"
   }
 }
