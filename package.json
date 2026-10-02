@@ -2,8 +2,13 @@
   "name": "breaking-change-detector",
   "displayName": "Internal Breaking-Change Detector",
   "description": "Diffs an internal package's public API across versions and maps exactly which in-repo call sites a change will break.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "bobrowsse-tech",
+  "author": {
+    "name": "Bob Rowsse Walakira",
+    "email": "hello@bobrowsse.com",
+    "url": "https://bobrowsse.com"
+  },
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -120,6 +125,7 @@
   ],
   "homepage": "https://github.com/bobrowsse-tech/breaking-change-detector#readme",
   "bugs": {
-    "url": "https://github.com/bobrowsse-tech/breaking-change-detector/issues"
+    "url": "https://github.com/bobrowsse-tech/breaking-change-detector/issues",
+    "email": "hello@bobrowsse.com"
   }
 }
